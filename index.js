@@ -4,7 +4,7 @@ const botRoutes = require("./routes/botRoutes");
 
 mongoose.connection.once("open", () => {
   console.log("✅ MongoDB connected, starting bot...");
-  const bot = new Telegraf("8208782632:AAHOYslILkZc5bhSIZxpyF0qBYIYtfONinE");
+  const bot = new Telegraf("8562082576:AAHlOG5tZwHBo4dA-DE8j6C-sB6AGtsYv8Y");
   botRoutes(bot);
   bot.launch();
   console.log("✅ Bot launched");
