@@ -20,6 +20,8 @@ mongoose.connection.once("open", () => {
     { command: "/thanhtoan", description: "Thanh toán tiền cầu lông" },
     { command: "/monthlyreport", description: "Báo cáo tổng tiền tháng" },
     { command: "/yearlyreport", description: "Báo cáo tổng tiền năm" },
+    { command: "/member", description: "Thông tin thành viên" },
+    { command: "/setphoto", description: "Thêm ảnh cho thành viên" },
     { command: "/chucnang", description: "Hiển thị danh sách các lệnh" },
   ]);
 

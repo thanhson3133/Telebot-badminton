@@ -9,6 +9,7 @@ const { addMember, updateMember } = require("../controllers/addMemberController"
 const { payment } = require("../controllers/paymentController");
 const { monthlyReport } = require("../controllers/monthlyReport");
 const { yearlyReport } = require("../controllers/yearlyReportController");
+const { memberInfo, setPhotoCommand } = require("../controllers/memberInfoController");
 
 module.exports = (bot) => {
   bot.command("countdown", countdownToTet);
@@ -23,14 +24,41 @@ module.exports = (bot) => {
   bot.command("monthlyreport", monthlyReport);
   bot.command("yearlyreport", yearlyReport);
   bot.command("updatemember", updateMember);
-  bot.command("chucnang", showCommands);
+  bot.command("member", memberInfo);
 
+  bot.command("setphoto", async (ctx) => {
+    try {
+      await setPhotoCommand(ctx);
+    } catch (err) {
+      console.error("setphoto command error:", err);
+    }
+  });
+
+  bot.on("photo", async (ctx) => {
+    if (ctx.message.reply_to_message?.text?.startsWith("/setphoto")) {
+      try {
+        await setPhotoCommand(ctx);
+      } catch (err) {
+        console.error("Photo handler error:", err);
+      }
+    }
+  });
   bot.on("text", (ctx) => {
     const text = ctx.message.text;
     if (text.startsWith("/")) {
-      ctx.reply(
-        `❌ Lệnh không hợp lệ.\nBạn có thể xem danh sách lệnh bằng /chucnang`
-      );
+      const validCommands = [
+        "countdown","gohome","chicken","addloan","deleteloan",
+        "addnonplayer","addmember","listplayer","thanhtoan",
+        "monthlyreport","yearlyreport","updatemember","member","setphoto","chucnang"
+      ];
+
+      const cmd = text.split(" ")[0].replace("/", "");
+      if (!validCommands.includes(cmd)) {
+        ctx.reply(
+          `❌ Lệnh không hợp lệ.\nBạn có thể xem danh sách lệnh bằng /chucnang`
+        );
+      }
     }
   });
+  bot.command("chucnang", showCommands);
 };
