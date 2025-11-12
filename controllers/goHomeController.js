@@ -8,9 +8,6 @@ exports.timeToGoHome = (ctx) => {
   let targetHour = 17;
   let targetMinute = 30;
 
-
-  console.log(user);
-  
   if (user?.toLowerCase() === "cuocthien") {
     targetHour = 18;
     targetMinute = 15;
@@ -21,8 +18,21 @@ exports.timeToGoHome = (ctx) => {
   let diff = target.diff(now);
 
   if (diff <= 0) {
-    ctx.reply("Hết giờ làm ✅", { reply_to_message_id: ctx.message.message_id });
-    return;
+    const msg = `
+    🎉🚪 Go away! 🚪🎉
+   +------------------+
+   |   VUA THUC AN    |
+   +------------------+
+   |                  |
+   |   [    ][    ]   |
+   |   [    ][    ]   |
+   |                  |
+   +------------------+
+       O
+      /|\\\\  <- Get out!
+      / \\\\
+    `;
+    ctx.replyWithMarkdownV2("```\n" + msg + "\n```");
   }
 
   const duration = moment.duration(diff);
