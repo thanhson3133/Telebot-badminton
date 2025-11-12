@@ -1,25 +1,19 @@
-exports.timeToGoHome = (ctx) => {
-  const now = new Date();
-  const target = new Date();
-  target.setHours(17, 30, 0, 0);
+const moment = require("moment-timezone");
 
-  let diff = target - now;
+exports.timeToGoHome = (ctx) => {
+  const now = moment.tz("Asia/Ho_Chi_Minh");
+  const target = now.clone().hour(17).minute(30).second(0);
+
+  let diff = target.diff(now);
   if (diff <= 0) {
-    ctx.reply("Hết giờ làm ✅", {
-      reply_to_message_id: ctx.message.message_id,
-    });
+    ctx.reply("Hết giờ làm ✅", { reply_to_message_id: ctx.message.message_id });
     return;
   }
 
-  const totalMinutes = Math.floor(diff / 1000 / 60);
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes % 60;
+  const duration = moment.duration(diff);
+  const hours = Math.floor(duration.asHours());
+  const minutes = duration.minutes();
 
-  const msg =
-    hours > 0
-      ? `${hours}h ${minutes} phút để tới 17:30 ⏳`
-      : `${minutes} phút để tới 17:30 ⏳`;
-  ctx.reply(msg, {
-    reply_to_message_id: ctx.message.message_id,
-  });
+  const msg = hours > 0 ? `${hours}h ${minutes} phút để tới 17:30 ⏳` : `${minutes} phút để tới 17:30 ⏳`;
+  ctx.reply(msg, { reply_to_message_id: ctx.message.message_id });
 };
