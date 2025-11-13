@@ -33,6 +33,7 @@ exports.timeToGoHome = (ctx) => {
       / \\\\
     `;
     ctx.replyWithMarkdownV2("```\n" + msg + "\n```");
+    return
   }
 
   const duration = moment.duration(diff);

@@ -50,9 +50,9 @@ exports.xamQue = async (ctx) => {
       parse_mode: "Markdown",
     });
 
-    const loading = ["🔮", "✨", "🌀", "🌕", "🔔"];
+    const loading = ["✨", "🌀", "✨",];
     for (let i = 0; i < loading.length; i++) {
-      await new Promise(r => setTimeout(r, 500));
+      await new Promise(r => setTimeout(r, 150));
       try {
         await ctx.telegram.editMessageCaption(
           msg1.chat.id,
@@ -64,7 +64,7 @@ exports.xamQue = async (ctx) => {
       } catch (err) {
         if (err.response && err.response.error_code === 429) {
           const retryAfter = err.response.parameters.retry_after || 1;
-          await new Promise(r => setTimeout(r, retryAfter * 1000));
+          await new Promise(r => setTimeout(r, retryAfter * 200));
           await ctx.telegram.editMessageCaption(
             msg1.chat.id,
             msg1.message_id,
@@ -76,7 +76,7 @@ exports.xamQue = async (ctx) => {
       }
     }
 
-    await new Promise(r => setTimeout(r, 1000));
+    await new Promise(r => setTimeout(r, 200));
 
     // Tạo khung quẻ
     function buildFortuneFrame(que) {
@@ -97,7 +97,7 @@ exports.xamQue = async (ctx) => {
       if (currentLine) lines.push(currentLine.trim());
 
       const maxLineLength = Math.max(...lines.map(l => l.length));
-      const width = maxLineLength + 6;
+      const width = maxLineLength + 7;
 
       const top = "╔" + "═".repeat(width) + "╗";
       const bottom = "╚" + "═".repeat(width) + "╝";
@@ -105,7 +105,7 @@ exports.xamQue = async (ctx) => {
         const padded = line
           .padStart(line.length + Math.floor((maxLineLength - line.length) / 2))
           .padEnd(maxLineLength);
-        return `║ 🎴 ${padded} 🎴║`;
+        return `  🎴 ${padded} 🎴`;
       });
 
       return [top, ...middleLines, bottom].join("\n");
