@@ -12,6 +12,8 @@ const queList = [
   "💎 *Cuộc đời là bể khổ, qua hết bể khổ là đến bể khác!.*",
 ];
 
+let quePool = [...queList];
+
 const shakeGifs = [
   "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcm5zNXg0aWpxMGk3aGV1bmxzeHp4eWxubHBueHQyYjc5YW03cXE0MCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/UVqyx9c4MAt9U4792j/giphy.gif",
   "https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3NTlreDJvNjkwZmUzY3UzbWtrMGxqZ2c3ZnY1OW15ZjliMXowcW8wMSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/UIWGwiqNx1C96K8Mx4/giphy.gif",
@@ -34,45 +36,49 @@ exports.xamQue = async (ctx) => {
 
     activeUsers.set(userId, true);
 
-    const que = queList[Math.floor(Math.random() * queList.length)];
+    if (quePool.length === 0) {
+      quePool = [...queList]; 
+    }
+
+    const randomIndex = Math.floor(Math.random() * quePool.length);
+    const que = quePool.splice(randomIndex, 1)[0]; 
+
     const gif = shakeGifs[Math.floor(Math.random() * shakeGifs.length)];
 
-    const msg1 = await ctx.reply(`🔮 *${user}* đang lắc quẻ...`, {
+    const msg1 = await ctx.replyWithAnimation(gif, {
+      caption: `🔮 *${user}* đang lắc quẻ...`,
       parse_mode: "Markdown",
     });
 
     const loading = ["🔮", "✨", "🌀", "🌕", "🔔"];
     for (let i = 0; i < loading.length; i++) {
-      await new Promise(r => setTimeout(r, 500)); // delay dài hơn để tránh spam
+      await new Promise(r => setTimeout(r, 500));
       try {
-        await ctx.telegram.editMessageText(
+        await ctx.telegram.editMessageCaption(
           msg1.chat.id,
           msg1.message_id,
           undefined,
-          `${loading[i]} ${user} đang lắc quẻ ${".".repeat(i + 1)}`
+          `${loading[i]} ${user} đang lắc quẻ ${".".repeat(i + 1)}`,
+          { parse_mode: "Markdown" }
         );
       } catch (err) {
         if (err.response && err.response.error_code === 429) {
           const retryAfter = err.response.parameters.retry_after || 1;
           await new Promise(r => setTimeout(r, retryAfter * 1000));
-          await ctx.telegram.editMessageText(
+          await ctx.telegram.editMessageCaption(
             msg1.chat.id,
             msg1.message_id,
             undefined,
-            `${loading[i]} ${user} đang lắc quẻ ${".".repeat(i + 1)}`
+            `${loading[i]} ${user} đang lắc quẻ ${".".repeat(i + 1)}`,
+            { parse_mode: "Markdown" }
           );
         }
       }
     }
 
-    // Gửi GIF lắc quẻ
-    await ctx.replyWithAnimation(gif, {
-      caption: "🧿 Quẻ đang hiện ra...",
-    });
-
     await new Promise(r => setTimeout(r, 1000));
 
-    // Hàm tạo khung quẻ
+    // Tạo khung quẻ
     function buildFortuneFrame(que) {
       const cleanText = que.toUpperCase().trim();
       const maxWidth = 30;
