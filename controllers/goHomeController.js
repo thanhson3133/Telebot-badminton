@@ -33,17 +33,33 @@ exports.timeToGoHome = (ctx) => {
       / \\\\
     `;
     ctx.replyWithMarkdownV2("```\n" + msg + "\n```");
-    return
+    return;
   }
 
   const duration = moment.duration(diff);
   const hours = duration.hours();
   const minutes = duration.minutes();
 
-  const msg =
-    hours > 0
-      ? `${hours}h ${minutes} phút để tới ${targetHour}:${targetMinute} ⏳`
-      : `${minutes} phút để tới ${targetHour}:${targetMinute} ⏳`;
-
-  ctx.reply(msg, { reply_to_message_id: ctx.message.message_id });
+  const msg = ` ${
+    hours > 0 ? `${hours}h : ${minutes}p` : `${minutes} Phút`
+  } để rời khỏi
+   +------------------+
+   |   VUA THUC AN    |
+   +------------------+
+   |                  |
+   |   [    ][    ]   |
+   |   [    ][    ]   |
+   |                  |
+   +------------------+
+       O
+      /|\\\\  <- Get out!
+      / \\\\
+    `;
+  // const msg =
+  //   hours > 0
+  //     ? `${hours}h ${minutes} phút để tới ${targetHour}:${targetMinute} ⏳`
+  //     : `${minutes} phút để tới ${targetHour}:${targetMinute} ⏳`;
+  ctx.replyWithMarkdownV2("```\n" + msg + "\n```", {
+    reply_to_message_id: ctx.message.message_id,
+  });
 };
