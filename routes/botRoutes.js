@@ -25,7 +25,7 @@ module.exports = (bot) => {
   bot.command("yearlyreport", yearlyReport);
   bot.command("updatemember", updateMember);
   bot.command("member", memberInfo);
-
+  bot.command("chucnang", showCommands);
   bot.command("setphoto", async (ctx) => {
     try {
       await setPhotoCommand(ctx);
@@ -60,5 +60,4 @@ module.exports = (bot) => {
       }
     }
   });
-  bot.command("chucnang", showCommands);
 };

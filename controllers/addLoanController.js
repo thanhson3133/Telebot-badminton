@@ -98,7 +98,7 @@ exports.addLoan = async (ctx) => {
         `- Tiền sân: ${courtFee.toLocaleString()} VNĐ\n` +
         `- Số người chơi: ${playerCount}\n` +
         `- Mỗi người: ${remainingFee.toLocaleString()} VNĐ\n` +
-        `👥 Đã tạo danh sách ${players.length} người chơi mặc định.`
+        `👥 Đã tạo danh sách ${playerCount} người chơi mặc định.`
     );
   } catch (err) {
     console.error("❌ addLoan error:", err);
@@ -112,24 +112,39 @@ exports.deleteLoan = async (ctx) => {
   try {
     const args = ctx.message.text.split(" ").slice(1);
     if (args.length !== 1) {
-      return ctx.reply("❌ Nhập đúng cú pháp: /deleteloan <ngày(dd/mm/yyyy)>");
+      return ctx.reply("❌ Nhập đúng cú pháp: /deleteloan <ngày(dd/mm/yyyy)>", {
+        reply_to_message_id: ctx.message.message_id,
+      });
     }
 
     const date = args[0];
     const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
     if (!dateRegex.test(date)) {
-      return ctx.reply("❌ Ngày không hợp lệ! Dạng đúng: dd/mm/yyyy");
+      return ctx.reply("❌ Ngày không hợp lệ! Dạng đúng: dd/mm/yyyy", {
+        reply_to_message_id: ctx.message.message_id,
+      });
     }
 
     const deleted = await Badminton.findOneAndDelete({ date });
-
     if (!deleted) {
-      return ctx.reply(`⚠️ Không tìm thấy buổi chơi ngày ${date}.`);
+      return ctx.reply(`⚠️ Không tìm thấy buổi chơi ngày ${date}.`, {
+        reply_to_message_id: ctx.message.message_id,
+      });
     }
 
-    ctx.reply(`🗑️ Đã xoá thành công buổi chơi ngày ${date}.`);
+    const deletedPlayers = await playerModel.deleteMany({ date });
+
+    ctx.reply(
+      `🗑️ Đã xoá thành công buổi chơi ngày ${date}.\n` +
+        `👥 ${deletedPlayers.deletedCount} người chơi đã được xoá.`,
+      {
+        reply_to_message_id: ctx.message.message_id,
+      }
+    );
   } catch (err) {
-    console.error(err);
-    ctx.reply("❌ Có lỗi xảy ra khi xoá dữ liệu.");
+    console.error("deleteLoan error:", err);
+    ctx.reply("❌ Có lỗi xảy ra khi xoá dữ liệu.", {
+      reply_to_message_id: ctx.message.message_id,
+    });
   }
 };
