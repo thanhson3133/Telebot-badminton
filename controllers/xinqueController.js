@@ -1,16 +1,5 @@
-const queList = [
-  "🌸 *Sáng ngủ dậy định làm người tử tế, mà đời không cho phép..*",
-  "🌞 *Tôi đã tìm thấy lối thoát trong công việc: thoát vị đĩa đệm.*",
-  "🌧 *Ở cái tuổi đáng ra phải đau khổ vì tình. Thì tôi lại đau lưng.*",
-  "🌿 *Hãy luôn theo đuổi giấc mơ của bạn, bằng cách tắt báo thức và ngủ tiếp.*",
-  "🌕 *Người ta hai bàn tay trắng làm giàu. Còn tôi cũng trắng tay mà làm ra đống nợ.*",
-  "🔥 *Gọi em là dân thường, vì gặp em anh sẽ thương dần.*",
-  "💎 *Ở nhà em ngoan lắm. Mỗi tội em ít ở nhà.*",
-  "🌈 *Mới chơi nói nhẹ cười duyên. Chơi thân mới biết nó điên có nghề!*",
-  "🔥 *Không làm đòi có ăn, chỉ có ăn c**.*",
-  "🌈 *Sống phải chất, chết phải ngất.*",
-  "💎 *Cuộc đời là bể khổ, qua hết bể khổ là đến bể khác!.*",
-];
+const queList = require("../constants");
+
 
 let quePool = [...queList];
 
