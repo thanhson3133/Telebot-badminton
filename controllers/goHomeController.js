@@ -44,7 +44,7 @@ exports.timeToGoHome = (ctx) => {
     hours > 0 ? `${hours}h : ${minutes}p` : `${minutes} Phút`
   } để rời khỏi
    +------------------+
-   |   VUA THUC AN    |
+   |   ${user?.toLowerCase() === "cuocthien" ? "    SL Q2  " : "VUA THUC AN"}    |
    +------------------+
    |                  |
    |   [    ][    ]   |
