@@ -57,6 +57,16 @@
 //   "😜 Nói nhiều quá, tôi sẽ report não mày với quản trị viên.",
 //   "😏 Mặt mày cười, nhưng tôi nghi là não mày đang ngủ đông.",
 //   "😎 Nếu drama là năng lượng, mày vừa sản xuất đủ điện cho cả thành phố."
+// "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!",
+// "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!",
+// "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!",
+// "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!",
+// "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!",
+// "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!",
+// "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!",
+// "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!",
+// "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!",
+// "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!",
 // ];
 const queList = [ "🙃 Đừng bốc nữa, cuộc sống của bạn rồi cũng sẽ như cuk thôi!"]
 module.exports = queList
