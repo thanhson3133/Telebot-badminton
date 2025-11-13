@@ -10,6 +10,7 @@ const { payment } = require("../controllers/paymentController");
 const { monthlyReport } = require("../controllers/monthlyReport");
 const { yearlyReport } = require("../controllers/yearlyReportController");
 const { memberInfo, setPhotoCommand } = require("../controllers/memberInfoController");
+const { xamQue } = require("../controllers/xinqueController");
 
 module.exports = (bot) => {
   bot.command("countdown", countdownToTet);
@@ -25,6 +26,7 @@ module.exports = (bot) => {
   bot.command("yearlyreport", yearlyReport);
   bot.command("updatemember", updateMember);
   bot.command("member", memberInfo);
+  bot.command("xinque", xamQue);
   bot.command("chucnang", showCommands);
   bot.command("setphoto", async (ctx) => {
     try {

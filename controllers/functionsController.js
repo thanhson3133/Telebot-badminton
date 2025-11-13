@@ -11,6 +11,7 @@ exports.showCommands = (ctx) => {
     { stt: 6, cmd: "/thanhtoan", desc: "Thanh toán tiền cầu lông" },
     { stt: 6, cmd: "/monthlyreport", desc: "Báo cáo tổng tiền tháng" },
     { stt: 6, cmd: "/yearlyreport", desc: "Báo cáo tổng tiền năm" },
+    { stt: 6, cmd: "/xinque", desc: "Xin quẻ" },
     { stt: 4, cmd: "/chucnang", desc: "Hiển thị danh sách các lệnh" },
   ];
 
