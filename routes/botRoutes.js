@@ -5,11 +5,17 @@ const { showCommands } = require("../controllers/functionsController");
 const { addLoan, deleteLoan } = require("../controllers/addLoanController");
 const { addNonPlayer } = require("../controllers/addNonPlayerController");
 const { listPlayer } = require("../controllers/listPlayerController");
-const { addMember, updateMember } = require("../controllers/addMemberController");
+const {
+  addMember,
+  updateMember,
+} = require("../controllers/addMemberController");
 const { payment } = require("../controllers/paymentController");
 const { monthlyReport } = require("../controllers/monthlyReport");
 const { yearlyReport } = require("../controllers/yearlyReportController");
-const { memberInfo, setPhotoCommand } = require("../controllers/memberInfoController");
+const {
+  memberInfo,
+  setPhotoCommand,
+} = require("../controllers/memberInfoController");
 const { xamQue } = require("../controllers/xinqueController");
 
 module.exports = (bot) => {
@@ -27,6 +33,12 @@ module.exports = (bot) => {
   bot.command("updatemember", updateMember);
   bot.command("member", memberInfo);
   bot.command("xinque", xamQue);
+  bot.command("minhnguyen", async (ctx) => {
+    ctx.replyWithMarkdown("for shit", {
+      reply_to_message_id: ctx.message.message_id,
+    });
+  });
+
   bot.command("chucnang", showCommands);
   bot.command("setphoto", async (ctx) => {
     try {
@@ -49,9 +61,21 @@ module.exports = (bot) => {
     const text = ctx.message.text;
     if (text.startsWith("/")) {
       const validCommands = [
-        "countdown","gohome","chicken","addloan","deleteloan",
-        "addnonplayer","addmember","listplayer","thanhtoan",
-        "monthlyreport","yearlyreport","updatemember","member","setphoto","chucnang"
+        "countdown",
+        "gohome",
+        "chicken",
+        "addloan",
+        "deleteloan",
+        "addnonplayer",
+        "addmember",
+        "listplayer",
+        "thanhtoan",
+        "monthlyreport",
+        "yearlyreport",
+        "updatemember",
+        "member",
+        "setphoto",
+        "chucnang",
       ];
 
       const cmd = text.split(" ")[0].replace("/", "");
