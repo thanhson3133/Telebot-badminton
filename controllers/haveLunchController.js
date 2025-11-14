@@ -26,6 +26,14 @@ exports.haveLunch = (ctx) => {
     return;
   }
 
+    if (diff <= 0) {
+    const msg = `
+    Đi ăn đi con đuỹ!
+    `;
+    ctx.replyWithMarkdownV2("```\n" + msg + "\n```");
+    return;
+  }
+
   const duration = moment.duration(diff);
   const hours = duration.hours();
   const minutes = duration.minutes();
