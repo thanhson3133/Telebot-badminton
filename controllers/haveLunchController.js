@@ -9,10 +9,16 @@ exports.haveLunch = (ctx) => {
   let targetMinute = 0;
 
   const target = now.clone().hour(targetHour).minute(targetMinute).second(0);
-
   let diff = target.diff(now);
 
-  if (diff <= 0) {
+  let targetHourWakeup = 13;
+  let targetMinuteWakeup = 0;
+
+  const targetWakeup = now.clone().hour(targetHourWakeup).minute(targetMinuteWakeup).second(0);
+
+  let diffWakeup = targetWakeup.diff(now);
+
+  if (diffWakeup <= 0) {
     const msg = `
     Dậy làm việc đi con đuỹ!
     `;
