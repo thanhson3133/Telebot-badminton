@@ -27,6 +27,7 @@ const {
   getPhotoDailyByDay,
   today,
 } = require("../controllers/dailyController");
+const { haveLunch } = require("../controllers/haveLunchController");
 
 module.exports = (bot) => {
   bot.command("countdown", countdownToTet);
@@ -43,6 +44,7 @@ module.exports = (bot) => {
   bot.command("updatemember", updateMember);
   bot.command("member", memberInfo);
   bot.command("xinque", xamQue);
+  bot.command("havelunch", haveLunch);
 
   bot.command("minhnguyen", async (ctx) => {
     ctx.replyWithMarkdown("for shit", {
