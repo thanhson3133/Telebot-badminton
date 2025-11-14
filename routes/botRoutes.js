@@ -16,7 +16,17 @@ const {
   memberInfo,
   setPhotoCommand,
 } = require("../controllers/memberInfoController");
+
 const { xamQue } = require("../controllers/xinqueController");
+
+const {
+  setPhotoDaily,
+  listPhotoDaily,
+  deletePhotoDaily,
+  validDays,
+  getPhotoDailyByDay,
+  today,
+} = require("../controllers/dailyController");
 
 module.exports = (bot) => {
   bot.command("countdown", countdownToTet);
@@ -33,6 +43,7 @@ module.exports = (bot) => {
   bot.command("updatemember", updateMember);
   bot.command("member", memberInfo);
   bot.command("xinque", xamQue);
+
   bot.command("minhnguyen", async (ctx) => {
     ctx.replyWithMarkdown("for shit", {
       reply_to_message_id: ctx.message.message_id,
@@ -48,6 +59,23 @@ module.exports = (bot) => {
     }
   });
 
+  // NEW DAILY PHOTO COMMANDS
+  bot.command("setphotodaily", setPhotoDaily);
+  bot.command("listphotodaily", listPhotoDaily);
+  bot.command("deletephotodaily", deletePhotoDaily);
+
+  validDays.forEach((day) => {
+    bot.command(day, async (ctx) => {
+      await getPhotoDailyByDay(ctx, day);
+    });
+  });
+
+  bot.command("today", async (ctx) => {
+    const day = today();
+    if (!day) return ctx.reply("Hôm nay không phải Thứ 2 – Thứ 6.");
+    await getPhotoDailyByDay(ctx, day);
+  });
+
   bot.on("photo", async (ctx) => {
     if (ctx.message.reply_to_message?.text?.startsWith("/setphoto")) {
       try {
@@ -57,6 +85,7 @@ module.exports = (bot) => {
       }
     }
   });
+
   bot.on("text", (ctx) => {
     const text = ctx.message.text;
     if (text.startsWith("/")) {
@@ -75,6 +104,9 @@ module.exports = (bot) => {
         "updatemember",
         "member",
         "setphoto",
+        "setphotodaily",
+        "listphotodaily",
+        "deletephotodaily",
         "chucnang",
       ];
 
