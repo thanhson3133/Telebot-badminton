@@ -73,7 +73,7 @@
 
 const queList = [
   "🔥 Xin xin cái con c**",
-  "🔥 *Không làm đòi có ăn, chỉ có ăn c**.*",
-  "Ngàn câu động viên không bằng 1 lời khuyên nghỉ việc"
+  // "🔥 *Không làm đòi có ăn, chỉ có ăn c**.*",
+  // "Ngàn câu động viên không bằng 1 lời khuyên nghỉ việc"
 ]
 module.exports = queList;
