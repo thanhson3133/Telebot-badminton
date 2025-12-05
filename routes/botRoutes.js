@@ -45,7 +45,17 @@ module.exports = (bot) => {
   bot.command("member", memberInfo);
   bot.command("xinque", xamQue);
   bot.command("havelunch", haveLunch);
+  validDays.forEach((day) => {
+    bot.command(day, async (ctx) => {
+      await getPhotoDailyByDay(ctx, day);
+    });
+  });
 
+  bot.command("today", async (ctx) => {
+    const day = today();
+    if (!day) return ctx.reply("Hôm nay không phải Thứ 2 – Thứ 6.");
+    await getPhotoDailyByDay(ctx, day);
+  });
   bot.command("minhnguyen", async (ctx) => {
     ctx.replyWithMarkdown("for shit", {
       reply_to_message_id: ctx.message.message_id,
@@ -65,18 +75,6 @@ module.exports = (bot) => {
   bot.command("setphotodaily", setPhotoDaily);
   bot.command("listphotodaily", listPhotoDaily);
   bot.command("deletephotodaily", deletePhotoDaily);
-
-  validDays.forEach((day) => {
-    bot.command(day, async (ctx) => {
-      await getPhotoDailyByDay(ctx, day);
-    });
-  });
-
-  bot.command("today", async (ctx) => {
-    const day = today();
-    if (!day) return ctx.reply("Hôm nay không phải Thứ 2 – Thứ 6.");
-    await getPhotoDailyByDay(ctx, day);
-  });
 
   bot.on("photo", async (ctx) => {
     if (ctx.message.reply_to_message?.text?.startsWith("/setphoto")) {
