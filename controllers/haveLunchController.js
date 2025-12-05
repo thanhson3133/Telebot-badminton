@@ -14,21 +14,25 @@ exports.haveLunch = (ctx) => {
   let targetHourWakeup = 13;
   let targetMinuteWakeup = 0;
 
-  const targetWakeup = now.clone().hour(targetHourWakeup).minute(targetMinuteWakeup).second(0);
+  const targetWakeup = now
+    .clone()
+    .hour(targetHourWakeup)
+    .minute(targetMinuteWakeup)
+    .second(0);
 
   let diffWakeup = targetWakeup.diff(now);
 
   if (diffWakeup <= 0) {
     const msg = `
-    Dậy làm việc đi con đuỹ!
+        Dậy làm việc đi con đuỹ!
     `;
     ctx.replyWithMarkdownV2("```\n" + msg + "\n```");
     return;
   }
 
-    if (diff <= 0) {
+  if (diff <= 0) {
     const msg = `
-    Đi ăn đi con đuỹ!
+        Đi ăn đi con đuỹ!
     `;
     ctx.replyWithMarkdownV2("```\n" + msg + "\n```");
     return;

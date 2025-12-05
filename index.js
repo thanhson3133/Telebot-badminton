@@ -5,8 +5,8 @@ const botRoutes = require("./routes/botRoutes");
 mongoose.connection.once("open", () => {
   console.log("✅ MongoDB connected, starting bot...");
 
-  // const bot = new Telegraf("8208782632:AAHOYslILkZc5bhSIZxpyF0qBYIYtfONinE");
-  const bot = new Telegraf("8004511736:AAFwcs8ry4XTf-awkUK2H8dqchgcH0_mr6Y");
+  const bot = new Telegraf("8208782632:AAHOYslILkZc5bhSIZxpyF0qBYIYtfONinE");
+  // const bot = new Telegraf("8004511736:AAFwcs8ry4XTf-awkUK2H8dqchgcH0_mr6Y");
 
   bot.telegram.setMyCommands([
     { command: "/gohome", description: "Giờ phút còn lại tới 17:30" },
