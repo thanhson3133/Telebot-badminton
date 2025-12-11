@@ -1,4 +1,4 @@
-const { countdownToTet } = require("../controllers/countdownController");
+const { countdownToTet, countdownToTetTay } = require("../controllers/countdownController");
 const { timeToGoHome } = require("../controllers/goHomeController");
 const { showChickenList } = require("../controllers/chickenController");
 const { showCommands } = require("../controllers/functionsController");
@@ -30,7 +30,8 @@ const {
 const { haveLunch } = require("../controllers/haveLunchController");
 
 module.exports = (bot) => {
-  bot.command("countdown", countdownToTet);
+  bot.command("lunaryear", countdownToTet);
+  bot.command("newyear", countdownToTetTay);
   bot.command("gohome", timeToGoHome);
   bot.command("chicken", showChickenList);
   bot.command("addloan", addLoan);

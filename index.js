@@ -11,7 +11,8 @@ mongoose.connection.once("open", () => {
   bot.telegram.setMyCommands([
     { command: "/gohome", description: "Giờ phút còn lại tới 17:30" },
     { command: "/chicken", description: "Danh sách XH những con gà" },
-    { command: "/countdown", description: "Đếm ngày đến Tết 2026 🎉" },
+    { command: "/lunaryear", description: "Đếm ngày đến Tết Nguyên Đán 2026 🎉" },
+    { command: "/newyear", description: "Đếm ngày đến Tết Tây 2026 🎉" },
     { command: "/addloan", description: "Tính tiền cầu lông" },
     { command: "/deleteloan", description: "Xoá tiền cầu lông theo ngày" },
     { command: "/addnonplayer", description: "Thêm người không chơi" },
