@@ -67,18 +67,26 @@ async function setPhotoDaily(ctx) {
 }
 
 async function getPhotoDailyByDay(ctx, day) {
-  const data = await Daily.findOne({ day });
+  try {
+    const data = await Daily.findOne({ day });
+    if (!data) {
+      return ctx.reply(`⚠️ Chưa có hình cho ngày *${day.toUpperCase()}*!`, {
+        parse_mode: "Markdown",
+      });
+    }
 
-  if (!data) {
-    return ctx.reply(`⚠️ Chưa có hình cho ngày *${day.toUpperCase()}*!`, {
+    return ctx.replyWithPhoto(data?.photoId, {
+      caption: `📅 *${day.toUpperCase()}*\n🙂 *${data?.mood}*`,
       parse_mode: "Markdown",
     });
+  } catch (error) {
+    return ctx.reply(
+      "❌ Hình đã hết hạn. Set lại hình để tiếp tục lệnh.",
+      {
+        reply_to_message_id: ctx.message.message_id,
+      }
+    );
   }
-
-  return ctx.replyWithPhoto(data?.photoId, {
-    caption: `📅 *${day.toUpperCase()}*\n🙂 *${data?.mood}*`,
-    parse_mode: "Markdown",
-  });
 }
 
 // ============================
