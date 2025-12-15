@@ -75,8 +75,8 @@ async function getPhotoDailyByDay(ctx, day) {
     });
   }
 
-  return ctx.replyWithPhoto(data.photoId, {
-    caption: `📅 *${day.toUpperCase()}*\n🙂 *${data.mood}*`,
+  return ctx.replyWithPhoto(data?.photoId, {
+    caption: `📅 *${day.toUpperCase()}*\n🙂 *${data?.mood}*`,
     parse_mode: "Markdown",
   });
 }
