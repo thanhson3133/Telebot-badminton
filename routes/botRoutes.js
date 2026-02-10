@@ -87,36 +87,36 @@ module.exports = (bot) => {
     }
   });
 
-  bot.on("text", (ctx) => {
-    const text = ctx.message.text;
-    if (text.startsWith("/")) {
-      const validCommands = [
-        "countdown",
-        "gohome",
-        "chicken",
-        "addloan",
-        "deleteloan",
-        "addnonplayer",
-        "addmember",
-        "listplayer",
-        "thanhtoan",
-        "monthlyreport",
-        "yearlyreport",
-        "updatemember",
-        "member",
-        "setphoto",
-        "setphotodaily",
-        "listphotodaily",
-        "deletephotodaily",
-        "chucnang",
-      ];
+  // bot.on("text", (ctx) => {
+  //   const text = ctx.message.text;
+  //   if (text.startsWith("/")) {
+  //     const validCommands = [
+  //       "countdown",
+  //       "gohome",
+  //       "chicken",
+  //       "addloan",
+  //       "deleteloan",
+  //       "addnonplayer",
+  //       "addmember",
+  //       "listplayer",
+  //       "thanhtoan",
+  //       "monthlyreport",
+  //       "yearlyreport",
+  //       "updatemember",
+  //       "member",
+  //       "setphoto",
+  //       "setphotodaily",
+  //       "listphotodaily",
+  //       "deletephotodaily",
+  //       "chucnang",
+  //     ];
 
-      const cmd = text.split(" ")[0].replace("/", "");
-      if (!validCommands.includes(cmd)) {
-        ctx.reply(
-          `❌ Lệnh không hợp lệ.\nBạn có thể xem danh sách lệnh bằng /chucnang`
-        );
-      }
-    }
-  });
+  //     const cmd = text.split(" ")[0].replace("/", "");
+  //     if (!validCommands.includes(cmd)) {
+  //       ctx.reply(
+  //         `❌ Lệnh không hợp lệ.\nBạn có thể xem danh sách lệnh bằng /chucnang`
+  //       );
+  //     }
+  //   }
+  // });
 };
